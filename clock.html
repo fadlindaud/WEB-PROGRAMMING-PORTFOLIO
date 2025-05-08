@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock and Countdown Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f2f2f2;
+        }
+
+        #clock {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        #timer {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+
+        .time-container {
+            margin: 20px;
+        }
+
+        input {
+            font-size: 1em;
+            padding: 10px;
+            margin-top: 10px;
+            width: 200px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="clock"></div>
+
+    <div class="time-container">
+        <h3>Countdown Timer</h3>
+        <p>Enter time in seconds:</p>
+        <input type="number" id="countdownInput" placeholder="Seconds" />
+        <button onclick="startCountdown()">Start Countdown</button>
+        <div id="timer"></div>
+    </div>
+
+    <script>
+        // Digital Clock
+        function updateClock() {
+            const clockElement = document.getElementById('clock');
+            const currentDate = new Date();
+            const hours = currentDate.getHours().toString().padStart(2, '0');
+            const minutes = currentDate.getMinutes().toString().padStart(2, '0');
+            const seconds = currentDate.getSeconds().toString().padStart(2, '0');
+            clockElement.innerHTML = `${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateClock, 1000); // Update the clock every second
+
+        // Countdown Timer
+        let countdownInterval;
+
+        function startCountdown() {
+            const countdownElement = document.getElementById('timer');
+            const inputSeconds = document.getElementById('countdownInput').value;
+            let secondsLeft = parseInt(inputSeconds, 10);
+
+            if (isNaN(secondsLeft) || secondsLeft <= 0) {
+                countdownElement.innerHTML = 'Please enter a valid number of seconds.';
+                return;
+            }
+
+            countdownElement.innerHTML = `Time remaining: ${secondsLeft} seconds`;
+
+            // Clear any existing countdown
+            clearInterval(countdownInterval);
+
+            countdownInterval = setInterval(function() {
+                secondsLeft--;
+                countdownElement.innerHTML = `Time remaining: ${secondsLeft} seconds`;
+
+                if (secondsLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    countdownElement.innerHTML = 'Time’s up!';
+                }
+            }, 1000);
+        }
+
+        // Initial call to set up the clock
+        updateClock();
+    </script>
+</body>
+</html>
