@@ -1,0 +1,38 @@
+
+body {
+  background-color: #B5A8D5;  
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 2rem;
+}
+
+.box {
+  background-color: #ffffff;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  flex: 1;
+}
+
+.about-me-flex {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-photo {
+  width: 100px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+}
+
+a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ff6600;
+  text-decoration: underline;
+}
